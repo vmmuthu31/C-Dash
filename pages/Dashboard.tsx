@@ -351,10 +351,11 @@ const Dashboard: React.FC = () => {
                                 </div>
                               ))}
                           </span>
+                          <div className="pt-10">
                           {chartData && (
                             <span
-                              className="relative"
-                              style={{ bottom: "85px" }}
+                              className="relative "
+                              style={{ bottom: "85px", }}
                             >
                               <Plot
                                 data={chartData}
@@ -363,6 +364,7 @@ const Dashboard: React.FC = () => {
                               />
                             </span>
                           )}
+                          </div>
                         </div>
                       </div>
                     </div>

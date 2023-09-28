@@ -153,7 +153,7 @@ const ProjectDash = () => {
                 <h2 className="w-[600px]">{`Name: ${datum.Name}`}</h2>
               </div>
               <div className="absolute">
-              <div className="flex px-10 space-x-20 justify-center  ">
+              <div className="flex px-2 space-x-5 justify-center  ">
                 <div className="w-full">
                   <Plot
                     data={[trace1, trace2]}
@@ -166,7 +166,7 @@ const ProjectDash = () => {
                       },
                       yaxis: { title: "Values" },
                     }}
-                    style={{ width: "980px", height: "380px" }}
+                    style={{ width: "950px", height: "380px" }}
                   />
                 </div>
                 <div className="">
