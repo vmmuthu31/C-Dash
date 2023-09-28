@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Navbar from "./Navbar";
 
 type BeneficiaryData = {
   cleanBeneficiary: string;
@@ -79,11 +80,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-full bg-white">
-      <div className="px-20 py-5 bg-black text-white text-xl font-bold">
-        <Link href="/Home">
-          <p>Carbon-Relay</p>
-        </Link>
-      </div>
+      <Navbar />
       <main className="pt-4">
         <div className="px-20 mx-auto">
           <div className="flex border rounded-lg border-black">
