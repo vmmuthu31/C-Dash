@@ -4,6 +4,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Navbar from "./Navbar";
+import { useSession} from "next-auth/react";
+import { useSelector } from 'react-redux';
 
 type BeneficiaryData = {
   cleanBeneficiary: string;
@@ -60,7 +62,8 @@ const Home: React.FC = () => {
         console.error("Error fetching data:", error);
       });
   }, []);
-
+  const { data: session } = useSession();
+  const user = useSelector((state) => state?.user);
   useEffect(() => {
     if (searchTerm) {
       setFilteredData(
@@ -79,6 +82,9 @@ const Home: React.FC = () => {
   }, [searchTerm, data, projectdata]);
 
   return (
+    <>
+    {typeof user?.user?.email != "undefined"  || session && session.user ? (
+      <>
     <div className="min-h-full bg-white">
     <Navbar />
       <main className="pt-4">
@@ -172,6 +178,14 @@ const Home: React.FC = () => {
         </div>
       </main>
     </div>
+    </>
+    ):(
+      <>
+      <Navbar />
+      <p className="text-center">Your Not Authenticated!</p>
+      </>
+    )}
+    </>
   );
 };
 

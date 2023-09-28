@@ -1,175 +1,72 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Navbar from "./Navbar";
 
-type BeneficiaryData = {
-  cleanBeneficiary: string;
-  netRetirement: number;
-};
-
-type ProjectData = {
-  Name: string;
-  ID: string;
-  Proponent: string;
-};
-
 const Home: React.FC = () => {
-  const [data, setData] = useState<BeneficiaryData[]>([]);
-  const [projectdata, setProjectData] = useState<ProjectData[]>([]);
-  const [filteredData, setFilteredData] = useState<BeneficiaryData[]>([]);
-  const [filteredprojectData, setFilteredprojectData] = useState<ProjectData[]>(
-    []
-  );
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedDataType, setSelectedDataType] = useState("company");
-
-  const router = useRouter();
-
-  const redirectToDashboard = (companyName: string) => {
-    router.push(`/Dashboard?companyName=${companyName}`);
-  };
-  const redirectToProjDashboard = (projectID: string) => {
-    router.push(`/ProjectDash?projectID=${projectID}`);
-  };
-
-  useEffect(() => {
-    axios
-      .get<BeneficiaryData[]>(
-        "https://carbon-relay-backend.vercel.app/DataRoute/data"
-      )
-      .then((response) => {
-        setData(response.data);
-        setFilteredData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-
-    axios
-      .get<ProjectData[]>(
-        "https://carbon-relay-backend.vercel.app/DataRoute/projectData"
-      )
-      .then((response) => {
-        setProjectData(response.data);
-        setFilteredprojectData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (searchTerm) {
-      setFilteredData(
-        data.filter((item) =>
-          item.cleanBeneficiary.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      );
-      setFilteredprojectData(
-        projectdata.filter((item) =>
-          item.Name.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      );
-    } else {
-      setFilteredData(data);
-    }
-  }, [searchTerm, data, projectdata]);
+ 
 
   return (
     <div className="min-h-full bg-white">
       <Navbar />
-      <main className="pt-4">
-        <div className="px-20 mx-auto">
-          <div className="flex border rounded-lg border-black">
-            <button
-              className="text-xl border bg-green-500 border-black px-20 font-bold"
-              onClick={() => setSelectedDataType("company")}
-            >
-              Company Level Data
-            </button>
-            <button
-              className="text-xl border bg-yellow-400 border-black px-20 font-bold"
-              onClick={() => setSelectedDataType("project")}
-            >
-              Project Level Data
-            </button>
-            <input
-              type="text"
-              placeholder="Search by Company Name"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-4 bg-green-500 text-white border rounded custom-input"
-            />
-          </div>
-          {selectedDataType === "company" ? (
-            filteredData.length > 0 ? (
-              <table className="w-full my-10 rounded-lg text-sm text-left text-gray-500">
-                <thead className="text-xs text-gray-700 rounded-xl uppercase bg-gray-600">
-                  <tr>
-                    <th scope="col" className="px-6 text-gray-300 py-3">
-                      Company Name
-                    </th>
-                    <th scope="col" className="px-6 text-gray-300 py-3">
-                      Net Retirement
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredData.map((item, index) => (
-                    <tr
-                      key={index}
-                      className="cursor-pointer bg-white border-b rounded-xl dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                      onClick={() => redirectToDashboard(item.cleanBeneficiary)}
-                    >
-                      <td className="px-6 py-4">{item.cleanBeneficiary}</td>
-                      <td className="px-6 py-4">{item.netRetirement}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <p className="text-center my-10 text-lg text-gray-500">
-                No available data
-              </p>
-            )
-          ) : filteredprojectData.length > 0 ? (
-            <table className="w-full my-10 rounded-lg text-sm text-left text-gray-500">
-              <thead className="text-xs text-gray-700 rounded-xl uppercase bg-gray-600">
-                <tr>
-                  <th scope="col" className="px-6 text-gray-300 py-3">
-                    ID
-                  </th>
-                  <th scope="col" className="px-6 text-gray-300 py-3">
-                    Name
-                  </th>
-                  <th scope="col" className="px-6 text-gray-300 py-3">
-                    Proponent
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredprojectData.map((item, index) => (
-                  <tr
-                    key={index}
-                    className="cursor-pointer bg-white border-b rounded-xl dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                    onClick={() => redirectToProjDashboard(item.ID)}
-                  >
-                    <td className="px-6 py-4">{item.ID}</td>
-                    <td className="px-6 py-4">{item.Name}</td>
-                    <td className="px-6 py-4">{item.Proponent}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p className="text-center my-10 text-lg text-gray-500">
-              No available data
-            </p>
-          )}
+      <main className="">
+      <div className="relative isolate px-6 lg:px-8">
+        <div
+          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          aria-hidden="true"
+        >
+          <div
+            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            style={{
+              clipPath:
+                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+            }}
+          />
         </div>
+        <div className="mx-auto max-w-2xl  lg:pt-28">
+          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+              Working in the Alpha phase...{' '}
+              <a href="#" className="font-semibold text-indigo-600">
+                <span className="absolute inset-0" aria-hidden="true" />
+                Read more <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </div>
+          <div className="text-center">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+            Uncover the Project and Company Insights
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-gray-600">
+            Welcome to the Carbon Dashboard, your gateway to actionable insights for driving positive environmental impact. Our platform provides you with the tools and data you need to make informed decisions that benefit both your projects and your organization.
+
+
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Link
+                href="/Login"
+                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Get started
+              </Link>
+              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                Learn more <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+          aria-hidden="true"
+        >
+          <div
+            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+            style={{
+              clipPath:
+                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+            }}
+          />
+        </div>
+      </div>
       </main>
     </div>
   );

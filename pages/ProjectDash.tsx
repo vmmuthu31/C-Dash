@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
+import { useSession} from "next-auth/react";
+import { useSelector } from 'react-redux';
 
 const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
 
@@ -80,8 +82,11 @@ const ProjectDash = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
+  const { data: session } = useSession();
+  const user = useSelector((state) => state?.user);
   return (
+    <>
+       {typeof user?.user?.email != "undefined"  || session && session.user ? (
     <div className="">
      <Navbar />
       {filteredData &&
@@ -137,8 +142,9 @@ const ProjectDash = () => {
 
           const uniqueDateRanges = getUniqueDateRanges([trace1, trace2]); 
           const customTickLabels = uniqueDateRanges.map(customizeTickText);
-
+          
           return (
+            
             <div key={index}>
               <div className="flex justify-center py-2 space-x-10">
                 <h2>{`ID: ${datum.ID}`}</h2>
@@ -373,6 +379,13 @@ const ProjectDash = () => {
           );
         })}
     </div>
+      ):(
+      <>
+      <Navbar />
+      <p className="text-center">Your Not Authenticated!</p>
+      </>
+      )}
+      </>
   );
 };
 

@@ -54,6 +54,8 @@ const Login: React.FC<SignupProps> = ({ providers }) => {
       toast.error("Invalid Email and password!")
     }
   };
+
+  
   return (
     <div className=" min-h-screen">
     <Navbar />

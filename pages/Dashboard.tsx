@@ -6,6 +6,8 @@ import { BiSearch } from "react-icons/bi";
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
+import { useSession} from "next-auth/react";
+import { useSelector } from 'react-redux';
 
 import axios from "axios";
 const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
@@ -45,6 +47,8 @@ interface YearlyValue {
 
 const Dashboard: React.FC = () => {
   const [data, setData] = useState<BeneficiaryData[]>([]);
+  const { data: session } = useSession();
+  const user = useSelector((state) => state?.user);
   const [pieChartData, setPieChartData] = useState([]);
   const [NumberOfRetirements, setSelectednoofretirement] = useState<
     string | null
@@ -268,6 +272,7 @@ const Dashboard: React.FC = () => {
   };
   return (
     <>
+     {typeof user?.user?.email != "undefined"  || session && session.user ? (
       <div className="min-h-full bg-white">
        <Navbar />
         <main className="pt-2 ">
@@ -470,6 +475,12 @@ const Dashboard: React.FC = () => {
           </div>
         </main>
       </div>
+     ): (
+<>
+      <Navbar />
+      <p className="text-center">Your Not Authenticated!</p>
+      </>
+     )}
     </>
   );
 };
