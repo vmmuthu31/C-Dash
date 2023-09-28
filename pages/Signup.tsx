@@ -48,7 +48,7 @@ const Signup: React.FC = () => {
         </div>
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-gray-400 py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <div className="bg-gray-400 mx-8 rounded-md py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-black">

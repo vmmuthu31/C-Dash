@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/userActions';
 import Link from "next/link";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface ProviderInfo {
   id: string;
   name: string;
@@ -62,12 +64,12 @@ const Login: React.FC<SignupProps> = ({ providers }) => {
             src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
             alt="Workflow"
           />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Login to your account</h2>
          
         </div>
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-gray-400 py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <div className="bg-gray-400 mx-8 rounded-md py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-black">
@@ -110,11 +112,12 @@ const Login: React.FC<SignupProps> = ({ providers }) => {
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                Sign up
+                Login
               </button>
             </div>
            <Link href="/Signup"> <p className="flex justify-end text-blue-800 pt-3 font-semibold">New User?</p></Link>
           </form>
+          <ToastContainer />
 
             <div className="mt-6">
               <div className="relative">

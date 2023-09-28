@@ -134,8 +134,8 @@ function Navbar() {
                 </Transition>
                 </>
               ):(
-                <Link href="/Signup">
-                <button  className='text-white bg-blue-500 px-3 py-1 rounded-xl'>Sign in</button>
+                <Link href="/Login">
+                <button  className='text-white bg-blue-500 px-3 py-1 rounded-xl'>Login</button>
                 </Link>
               )}
               </Menu>

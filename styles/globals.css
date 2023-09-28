@@ -37,6 +37,22 @@
   opacity: 1; /* Firefox */
 }
 
+/* CSS for large devices */
+@media (min-width: 768px) {
+  .chart-container {
+    width: 200px !important;
+    height: 390px !important;
+  }
+}
+
+/* CSS for smaller devices */
+@media (max-width: 767px) {
+  .chart-container {
+    width: auto !important;
+    height: auto !important;
+  }
+}
+
 .break-words {
   word-wrap: break-word;
 }

@@ -82,16 +82,16 @@ const Home: React.FC = () => {
     <div className="min-h-full bg-white">
     <Navbar />
       <main className="pt-4">
-        <div className="px-20 mx-auto">
+        <div className="lg:px-20 px-4 mx-auto">
           <div className="flex border rounded-lg border-black">
             <button
-              className="text-xl border bg-green-500 border-black px-20 font-bold"
+              className="text-xl border bg-green-500 border-black px-4 lg:px-20 font-bold"
               onClick={() => setSelectedDataType("company")}
             >
               Company Level Data
             </button>
             <button
-              className="text-xl border bg-yellow-400 border-black px-20 font-bold"
+              className="text-xl border bg-yellow-400 border-black px-4 lg:px-20 font-bold"
               onClick={() => setSelectedDataType("project")}
             >
               Project Level Data
