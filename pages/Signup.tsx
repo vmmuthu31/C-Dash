@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Navbar from "./Navbar";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Signup: React.FC = () => {
   const router = useRouter();
@@ -27,9 +30,12 @@ const Signup: React.FC = () => {
     });
 
     if (response.ok) {
+      toast.success("Signup Successfull Please Login!")
     router.push("/Login")
+    
     } else {
       console.error("Sign-in failed");
+      toast.error("Signup Failed!")
     }
   };
   return (
@@ -96,7 +102,7 @@ const Signup: React.FC = () => {
             </div>
            <Link href="/Login"> <p className="flex justify-end pt-5 text-blue-800 font-semibold">Existing User?</p></Link>
           </form>
-
+          <ToastContainer />
             
           </div>
         </div>
