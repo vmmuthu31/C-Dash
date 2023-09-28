@@ -16,7 +16,6 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-// Define any missing types
 interface BeneficiaryData {
   cleanBeneficiary: string;
   netRetirement: number;
@@ -69,9 +68,7 @@ const Dashboard: React.FC = () => {
         setSelectedRetirementDetails(selectedData.retirementdetails);
         const pieData = [];
 
-        // Function to safely push data into pieData
         const addPieData = (dataStr, title) => {
-          // Parse the data string to extract labels and values
           const items = dataStr.split(", ");
           const labels = [];
           const values = [];
@@ -80,8 +77,6 @@ const Dashboard: React.FC = () => {
             labels.push(label.trim());
             values.push(parseFloat(value.trim()));
           });
-
-          // Determine hover template based on the title
           let hoverTemplate = "";
           switch (title) {
             case "Retirement Distribution (Project ID)":
@@ -91,7 +86,7 @@ const Dashboard: React.FC = () => {
             case "Retirement Distribution <br> (Project Type)":
               hoverTemplate =
                 "<br><br>" +
-                "<span style='text-align: center; padding-top:50px; max-width: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>%{label}</span>: %{percent:.2f}" + // Format as a number
+                "<span style='text-align: center; padding-top:50px; max-width: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>%{label}</span>: %{percent:.2f}" + 
                 "<br><br><br>";
 
               break;
@@ -115,8 +110,6 @@ const Dashboard: React.FC = () => {
             textposition: "inside",
           });
         };
-
-        // Add Pie charts
         addPieData(
           selectedData.netRetirementDistributionbyid || "",
           "Retirement Distribution <br> (Project ID)"
@@ -133,14 +126,11 @@ const Dashboard: React.FC = () => {
           selectedData.netRetirementDistributionbymethodology || "",
           "Retirement Distribution <br> (Methodology)"
         );
-
-        // Update pieChartData state
         setPieChartData(pieData);
       }
     }
   }, [companyNameFromQuery, data]);
 
-  // Fetch the data only once when the component mounts
   useEffect(() => {
     axios
       .get<BeneficiaryData[]>(
@@ -154,9 +144,7 @@ const Dashboard: React.FC = () => {
       });
   }, []);
   console.log("company name", companyNameFromQuery);
-
-  // Update chart data when the route or data changes
-  useEffect(() => {
+ useEffect(() => {
     if (companyNameFromQuery && data.length > 0) {
       const selectedData = data.find(
         (b) => b.cleanBeneficiary === companyNameFromQuery
@@ -173,7 +161,6 @@ const Dashboard: React.FC = () => {
   ): any[] => {
     const traces: any[] = [];
 
-    // Net Retirement
     traces.push({
       x: ["Net Retirement"],
       y: [beneficiaryData.netRetirement],
@@ -187,7 +174,6 @@ const Dashboard: React.FC = () => {
       },
     });
 
-    // Retirement by Year
     beneficiaryData.yearlyData.forEach((yearData) => {
       if (Array.isArray(yearData.data)) {
         traces.push({
@@ -196,19 +182,18 @@ const Dashboard: React.FC = () => {
             yearData.data.reduce((acc, entry) => acc + entry.currentValue, 0),
           ],
           name: yearData.year,
-          text: yearData.year, // Add this
+          text: yearData.year, 
           hovertemplate: `${yearData.year}:${[
             yearData.data.reduce((acc, entry) => acc + entry.currentValue, 0),
           ]}<extra></extra>`,
 
-          textposition: "inside", // And this
+          textposition: "inside", 
           type: "bar",
           showlegend: false,
         });
       }
     });
 
-    // Retirement by ID
     const idDataPairs =
       beneficiaryData.netRetirementDistributionbyid.split(", ");
     idDataPairs.forEach((pair) => {
@@ -216,16 +201,14 @@ const Dashboard: React.FC = () => {
       traces.push({
         x: ["Retirement by ID"],
         y: [parseFloat(value)],
-        text: id.trim(), // Add this
-        textposition: "inside", // And this
+        text: id.trim(), 
+        textposition: "inside", 
         hovertemplate: `${id.trim()}:${[parseFloat(value)]}<extra></extra>`,
         name: id.trim(),
         type: "bar",
         showlegend: false,
       });
     });
-
-    // Retirement by Vintage
     const retirementByVintage = {};
     beneficiaryData.yearlyData.forEach((yearData) => {
       if (yearData.data && Array.isArray(yearData.data)) {
@@ -246,8 +229,8 @@ const Dashboard: React.FC = () => {
       traces.push({
         x: ["Retirement by Vintage"],
         y: [value],
-        text: [year], // Add this
-        textposition: "inside", // And this
+        text: [year], 
+        textposition: "inside", 
         hovertemplate: `Vintage ${[year]}:${[value]}<extra></extra>`,
         name: year,
         type: "bar",

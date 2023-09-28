@@ -8,7 +8,7 @@ import Link from "next/link";
 interface ProviderInfo {
   id: string;
   name: string;
-  [key: string]: any; // This allows for additional properties on the provider object
+  [key: string]: any; 
 }
 
 interface SignupProps {

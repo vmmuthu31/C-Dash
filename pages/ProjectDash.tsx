@@ -11,8 +11,6 @@ const ProjectDash = () => {
   const [data, setData] = useState(null);
   const searchParams = useSearchParams();
   const projectIDFromQuery = searchParams.get("projectID");
-
-  // Fetch data from API
   const fetchData = async () => {
     const res = await fetch(
       "https://carbon-relay-backend.vercel.app/DataRoute/projectData"
@@ -22,14 +20,12 @@ const ProjectDash = () => {
   };
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const month = date.getUTCMonth() + 1; // Months are zero-based
+    const month = date.getUTCMonth() + 1; 
     const day = date.getUTCDate();
     const year = date.getUTCFullYear();
 
     return `${month}/${day}/${year}`;
   };
-
-  // Parse data
   const parseData = (str) => {
     const items = str?.split(", ");
     const parsedData = items?.map((item) => {
@@ -62,14 +58,12 @@ const ProjectDash = () => {
         }
       }
     }
-    // Add the last entry
     parsedData[name.trim()] = parseFloat(value.trim());
 
     return parsedData;
   };
 
   const parseBeneficiariesPercentages = (str) => {
-    // Replace single quotes with double quotes to make it a valid JSON string
     const jsonString = str?.replace(/'/g, '"');
 
     try {
@@ -100,14 +94,14 @@ const ProjectDash = () => {
           );
           const customizeTickText = (dateStr) => {
             if (typeof dateStr !== "string") {
-              return dateStr; // Return the original value if it's not a string
+              return dateStr; 
             }
 
             const dates = dateStr.split(" to ");
             return `${dates[0]} -<br> ${dates[1]}`;
           };
 
-          const xTickVals = quantities?.map((q) => q.date); // Assuming you have 'to' in your date strings.
+          const xTickVals = quantities?.map((q) => q.date); 
           const xTickTexts = xTickVals?.map(customizeTickText);
 
           const trace1 = {
@@ -138,12 +132,10 @@ const ProjectDash = () => {
             ]),
           ];
           const getUniqueDateRanges = (data) => {
-            // Extract and return unique date ranges from your data
-            // This is just a placeholder; you'll need to adapt it to your data structure
             return [...new Set(data.map((d) => d.x))];
           };
 
-          const uniqueDateRanges = getUniqueDateRanges([trace1, trace2]); // Assuming trace1 and trace2 are your data traces
+          const uniqueDateRanges = getUniqueDateRanges([trace1, trace2]); 
           const customTickLabels = uniqueDateRanges.map(customizeTickText);
 
           return (

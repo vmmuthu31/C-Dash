@@ -18,8 +18,6 @@ const Signup: React.FC = () => {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // Assuming you have a "/signup" API endpoint for handling sign-up
     const response = await fetch("https://carbon-relay-backend.vercel.app/auth/signup", {
       method: "POST",
       headers: {
@@ -31,7 +29,6 @@ const Signup: React.FC = () => {
     if (response.ok) {
     router.push("/Login")
     } else {
-      // Handle sign-up error, e.g., display an error message
       console.error("Sign-in failed");
     }
   };
