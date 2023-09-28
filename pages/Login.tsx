@@ -3,7 +3,7 @@ import { getProviders, signIn, signOut, useSession } from "next-auth/react";
 import Navbar from "./Navbar";
 import { useRouter } from "next/navigation";
 import { useDispatch } from 'react-redux';
-import { setUser } from './store/userActions';
+import { setUser } from '../store/userActions';
 import Link from "next/link";
 interface ProviderInfo {
   id: string;
@@ -32,8 +32,6 @@ const Login: React.FC<SignupProps> = ({ providers }) => {
   const dispatch = useDispatch();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // Assuming you have a "/signup" API endpoint for handling sign-up
     const response = await fetch("https://carbon-relay-backend.vercel.app/auth/login", {
       method: "POST",
       headers: {
@@ -44,15 +42,12 @@ const Login: React.FC<SignupProps> = ({ providers }) => {
 
     if (response.ok) {
       const data = await response.json();
-
-      // Now you can access the response data
       const { token, user } = data;
     
      
       dispatch(setUser({ token, user }));
     router.push("/Home")
     } else {
-      // Handle sign-up error, e.g., display an error message
       console.error("Sign-in failed");
     }
   };
