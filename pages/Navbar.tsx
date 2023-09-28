@@ -53,8 +53,8 @@ function Navbar() {
             <Link href="/Home">
               <div className="flex flex-shrink-0 items-center">
                 <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                  className="h-8 w-auto rounded-3xl"
+                  src="https://blogger.googleusercontent.com/img/a/AVvXsEiT8Afh7Hou6PPsXsNSRU9AQG1Cg6jg_yqfyIM3-VHhagOqwbuxJhgekjWO6WT64Yxh7dBzaTDvjtydaORLDO7QMzYS4-infXNy34WuNta0HbTPVqYc45MYbhTFTNlngOaC-XKHORZjmkrZVq1KE9Ql9Y043n5yAiMLc-vzlvhlPFZQM0ihZr8S9Rg4nRQ"
                   alt="Your Company"
                 />
                    <p className="text-white text-lg px-2">C-Dash</p>    
@@ -64,8 +64,8 @@ function Navbar() {
               <Link href="/">
               <div className="flex flex-shrink-0 items-center">
                 <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                  className="h-8 w-auto rounded-3xl"
+                  src="https://blogger.googleusercontent.com/img/a/AVvXsEiT8Afh7Hou6PPsXsNSRU9AQG1Cg6jg_yqfyIM3-VHhagOqwbuxJhgekjWO6WT64Yxh7dBzaTDvjtydaORLDO7QMzYS4-infXNy34WuNta0HbTPVqYc45MYbhTFTNlngOaC-XKHORZjmkrZVq1KE9Ql9Y043n5yAiMLc-vzlvhlPFZQM0ihZr8S9Rg4nRQ"
                   alt="Your Company"
                 />
                    <p className="text-white text-lg px-2">C-Dash</p>    
