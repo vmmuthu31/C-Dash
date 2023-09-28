@@ -20,7 +20,6 @@ const navigation = [
 ]
 
 
-
 function classNames(...classes: (string | undefined | null | false)[]): string {
   return classes.filter(Boolean).join(' ');
 }
@@ -29,7 +28,7 @@ function Navbar() {
     const { data: session } = useSession();
     const user = useSelector((state) => state?.user);
   const token = useSelector((state) => state?.token);
-  
+  console.log(user)
   return (
     <Disclosure as="nav" className="bg-gray-800">
         
@@ -123,7 +122,7 @@ function Navbar() {
                       {({ active }) => (
                          <button
                          className={classNames(active ? 'bg-gray-100' : '', 'block w-full px-4 py-2 text-sm text-gray-700')}
-                         onClick={() => signOut({ callbackUrl: "/Signup" })}
+                         onClick={() => signOut({ callbackUrl: "/Login" })}
                        >
                          Sign Out
                        </button>

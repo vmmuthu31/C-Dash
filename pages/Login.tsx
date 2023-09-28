@@ -3,7 +3,7 @@ import { getProviders, signIn, signOut, useSession } from "next-auth/react";
 import Navbar from "./Navbar";
 import { useRouter } from "next/navigation";
 import { useDispatch } from 'react-redux';
-import { setUser } from '../store/userActions';
+import { setUser } from "../store/userActions";
 import Link from "next/link";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -45,12 +45,13 @@ const Login: React.FC<SignupProps> = ({ providers }) => {
     if (response.ok) {
       const data = await response.json();
       const { token, user } = data;
-    
+      toast.success("Login Successfull!")
      
       dispatch(setUser({ token, user }));
     router.push("/Home")
     } else {
       console.error("Sign-in failed");
+      toast.error("Invalid Email and password!")
     }
   };
   return (
