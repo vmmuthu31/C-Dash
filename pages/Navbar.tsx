@@ -4,7 +4,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { getProviders, signIn, signOut, useSession} from "next-auth/react";
 import Link from 'next/link';
-
+import { useSelector } from 'react-redux';
 
 interface NavigationItem {
   name: string;
@@ -27,6 +27,9 @@ function classNames(...classes: (string | undefined | null | false)[]): string {
 
 function Navbar() {
     const { data: session } = useSession();
+    const user = useSelector((state) => state?.user);
+  const token = useSelector((state) => state?.token);
+  
   return (
     <Disclosure as="nav" className="bg-gray-800">
         
@@ -81,7 +84,7 @@ function Navbar() {
 
               {/* Profile dropdown */}
               <Menu as="div" className="relative ml-3">
-              {session && session.user ? (
+              {typeof user?.user?.email != "undefined"  || session && session.user ? (
                 <>
                 <div>
                   <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -90,7 +93,7 @@ function Navbar() {
                    
                     <img
                     className="h-8 w-8 rounded-full"
-                    src={session.user.image as string}
+                    src={session?.user?.image as string || "https://png.pngtree.com/element_our/20190604/ourmid/pngtree-user-avatar-boy-image_1482937.jpg"}
                     alt=""
                   />
               
@@ -111,7 +114,7 @@ function Navbar() {
                         <p
                           className={classNames(active ? 'bg-gray-100' : '', 'block  text-center px-4 py-2 text-sm text-gray-700')}
                         >
-                     user: {session?.user?.email?.slice(0, -10)}
+                   {user?.user ? `User: ${user?.user?.email.slice(0, -10)}` : `User: ${session?.user?.email?.slice(0, -10)}`}
 
                         </p>
                       )}
@@ -120,7 +123,7 @@ function Navbar() {
                       {({ active }) => (
                          <button
                          className={classNames(active ? 'bg-gray-100' : '', 'block w-full px-4 py-2 text-sm text-gray-700')}
-                         onClick={() => signOut({ callbackUrl: "/Home" })}
+                         onClick={() => signOut({ callbackUrl: "/Signup" })}
                        >
                          Sign Out
                        </button>
@@ -132,7 +135,7 @@ function Navbar() {
                 </>
               ):(
                 <Link href="/Signup">
-                <button  className='text-white bg-blue-500 px-3 py-1 rounded-xl'>Signup</button>
+                <button  className='text-white bg-blue-500 px-3 py-1 rounded-xl'>Sign in</button>
                 </Link>
               )}
               </Menu>
