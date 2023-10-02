@@ -259,6 +259,7 @@ const Dashboard: React.FC = () => {
     yaxis: { zeroline: false, title: "Net Retirement Amount" },
   };
   const config = {
+    displayModeBar: false,
     modeBarButtonsToRemove: [
       "pan2d",
       "zoomIn2d",
@@ -311,6 +312,9 @@ const Dashboard: React.FC = () => {
                                 >
                                   <Plot
                                     data={[data]}
+                                    config={
+                                      {displayModeBar: false}
+                                    }
                                     layout={{
                                       showlegend: false,
                                       textinfo: "none",
@@ -369,8 +373,8 @@ const Dashboard: React.FC = () => {
                   <div className="rounded-lg overflow-hidden shadow">
                     <div className="">
                       <div className="relative overflow-hidden shadow-md sm:rounded-lg">
-                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <table className="w-full text-sm text-left text-gray-400">
+                          <thead className="text-xs  uppercase bg-gray-700 text-gray-400">
                             <tr>
                               <th scope="col" className="px-6 py-3">
                                 Name
@@ -381,7 +385,7 @@ const Dashboard: React.FC = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <tr className="border-b bg-gray-800 border-gray-700  hover:bg-gray-600">
                               <td>
                                 <div className="pl-3">
                                   <div className="text-base font-semibold">
@@ -391,7 +395,7 @@ const Dashboard: React.FC = () => {
                               </td>
                               <th
                                 scope="row"
-                                className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                                className="flex items-center px-6 py-4  whitespace-nowrap text-white"
                               >
                                 <div className="pl-3">
                                   <div className="font-normal text-gray-500">
@@ -400,7 +404,7 @@ const Dashboard: React.FC = () => {
                                 </div>
                               </th>
                             </tr>
-                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <tr className="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
                               <td>
                                 <div className="pl-3">
                                   <div className="text-base font-semibold">
@@ -410,7 +414,7 @@ const Dashboard: React.FC = () => {
                               </td>
                               <th
                                 scope="row"
-                                className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                                className="flex items-center px-6 py-4  whitespace-nowrap text-white"
                               >
                                 <div className="pl-3">
                                   <div className="font-normal text-gray-500">
@@ -419,7 +423,7 @@ const Dashboard: React.FC = () => {
                                 </div>
                               </th>
                             </tr>
-                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <tr className="border-b bg-gray-800 border-gray-700  hover:bg-gray-600">
                               <td>
                                 <div className="pl-3">
                                   <div className="text-base font-semibold">
@@ -429,7 +433,7 @@ const Dashboard: React.FC = () => {
                               </td>
                               <th
                                 scope="row"
-                                className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                                className="flex items-center px-6 py-4  whitespace-nowrap text-white"
                               >
                                 <div className="pl-3">
                                   <div className="font-normal text-gray-500">
@@ -438,7 +442,7 @@ const Dashboard: React.FC = () => {
                                 </div>
                               </th>
                             </tr>
-                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <tr className="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
                               <td>
                                 <div className="max-h-96">
                                   <div className="pl-3">
@@ -449,7 +453,7 @@ const Dashboard: React.FC = () => {
                                 </div>
                               </td>
                               <th
-                                className="block px-6 py-4 h-[450px] overflow-y-hidden text-gray-900 dark:text-white"
+                                className="block px-6 py-4 h-[450px] overflow-y-hidden text-white"
                                 onMouseEnter={(e) =>
                                   (e.currentTarget.style.overflowY = "scroll")
                                 }

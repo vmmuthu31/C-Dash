@@ -155,6 +155,9 @@ const ProjectDash = () => {
                 <div className="w-full">
                   <Plot
                     data={[trace1, trace2]}
+                    config={{
+                      displayModeBar: false,
+                    }}
                     layout={{
                       title: `Total Quantities vs Net Retirements for ID: ${datum.ID}`,
                       xaxis: {
@@ -168,8 +171,8 @@ const ProjectDash = () => {
                   />
                 </div>
                 <div className="">
-                  <table className="text-sm w-64 text-left text-gray-500 dark:text-gray-400 rounded-xl">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 rounded-t rounded-b">
+                  <table className="text-sm w-64 text-left text-gray-400 rounded-xl">
+                    <thead className="text-xs  uppercase bg-gray-700 text-gray-400 rounded-t rounded-b">
                       <tr>
                         <th scope="col" className="px-6 py-3 rounded-tl">
                           Field
@@ -180,7 +183,7 @@ const ProjectDash = () => {
                       </tr>
                     </thead>
                     <tbody className="rounded-xl">
-                      <tr className="bg-white border-b  dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <tr className="border-b  bg-gray-800 border-gray-700 hover:bg-gray-600">
                         <td className="rounded-bl">
                           <div className="pl-3">
                             <div className="text-base font-semibold">ID</div>
@@ -188,7 +191,7 @@ const ProjectDash = () => {
                         </td>
                         <th
                           scope="row"
-                          className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white rounded-br"
+                          className="flex items-center px-6 py-4  whitespace-nowrap text-white rounded-br"
                         >
                           <div className="pl-3">
                             <div className="font-normal text-gray-500">
@@ -197,7 +200,7 @@ const ProjectDash = () => {
                           </div>
                         </th>
                       </tr>
-                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <tr className="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
                         <td className="rounded-bl">
                           <div className="max-h-96">
                             <div className="pl-3">
@@ -207,7 +210,7 @@ const ProjectDash = () => {
                             </div>
                           </div>
                         </td>
-                        <th className="block px-6 py-4 rounded-br h-auto overflow-y-hidden text-gray-900 dark:text-white">
+                        <th className="block px-6 py-4 rounded-br h-auto overflow-y-hidden text-white">
                           <div className="pl-3">
                             <div className="font-normal text-gray-500">
                               {datum.Name}
@@ -216,7 +219,7 @@ const ProjectDash = () => {
                         </th>
                       </tr>
 
-                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <tr className=" border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
                         <td className="rounded-bl">
                           <div className="pl-3">
                             <div className="text-base font-semibold">
@@ -226,7 +229,7 @@ const ProjectDash = () => {
                         </td>
                         <th
                           scope="row"
-                          className="flex rounded-br items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                          className="flex rounded-br items-center px-6 py-4  whitespace-nowrap text-white"
                         >
                           <div className="pl-3">
                             <div className="font-normal text-gray-500">
@@ -236,7 +239,7 @@ const ProjectDash = () => {
                         </th>
                       </tr>
 
-                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <tr className=" border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
                         <td className="rounded-bl">
                           <div className="pl-3">
                             <div className="text-base font-semibold">
@@ -246,7 +249,7 @@ const ProjectDash = () => {
                         </td>
                         <th
                           scope="row"
-                          className="rounded-br items-center px-6 py-4 text-gray-900 dark:text-white"
+                          className="rounded-br items-center px-6 py-4 text-white"
                         >
                           <div className="pl-3">
                             <div className="font-normal break-words text-gray-500">
@@ -255,7 +258,7 @@ const ProjectDash = () => {
                           </div>
                         </th>
                       </tr>
-                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <tr className=" border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
                         <td className="rounded-bl">
                           <div className="pl-3">
                             <div className="text-base font-semibold">
@@ -265,7 +268,7 @@ const ProjectDash = () => {
                         </td>
                         <th
                           scope="row"
-                          className="flex rounded-br items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                          className="flex rounded-br items-center px-6 py-4  whitespace-nowrap text-white"
                         >
                           <div className="pl-3">
                             <div className="font-normal text-gray-500">
@@ -274,7 +277,7 @@ const ProjectDash = () => {
                           </div>
                         </th>
                       </tr>
-                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <tr className=" border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
                         <td className="rounded-bl">
                           <div className="pl-3">
                             <div className="text-base font-semibold">
@@ -284,7 +287,7 @@ const ProjectDash = () => {
                         </td>
                         <th
                           scope="row"
-                          className="flex rounded-br items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                          className="flex rounded-br items-center px-6 py-4  whitespace-nowrap text-white"
                         >
                           <div className="pl-3">
                             <div className="font-normal text-gray-500">
@@ -293,7 +296,7 @@ const ProjectDash = () => {
                           </div>
                         </th>
                       </tr>
-                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <tr className=" border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
                         <td className="rounded-bl">
                           <div className="pl-3">
                             <div className="text-base font-semibold">
@@ -303,7 +306,7 @@ const ProjectDash = () => {
                         </td>
                         <th
                           scope="row"
-                          className="flex rounded-br items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                          className="flex rounded-br items-center px-6 py-4  whitespace-nowrap text-white"
                         >
                           <div className="pl-3">
                             <div className="font-normal text-gray-500">
@@ -312,7 +315,7 @@ const ProjectDash = () => {
                           </div>
                         </th>
                       </tr>
-                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <tr className=" border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
                         <td className="rounded-bl">
                           <div className="pl-3">
                             <div className="text-base font-semibold">
@@ -322,7 +325,7 @@ const ProjectDash = () => {
                         </td>
                         <th
                           scope="row"
-                          className="flex rounded-br items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                          className="flex rounded-br items-center px-6 py-4  whitespace-nowrap text-white"
                         >
                           <div className="pl-3">
                             <div className="font-normal text-gray-500">
@@ -338,8 +341,8 @@ const ProjectDash = () => {
               </div>
               <div className=" ml-40 mt-96 relative">
                 <div className="table-wrapper">
-                  <table className="text-sm rounded text-left  text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs rounded-t rounded-b header-table text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <table className="text-sm rounded text-left  text-gray-400">
+                    <thead className="text-xs rounded-t rounded-b header-table  uppercase bg-gray-700 text-gray-400">
                       <tr className="border-br">
                         <th scope="col" className="px-8 py-2">
                           Beneficiary Name
@@ -357,7 +360,7 @@ const ProjectDash = () => {
                         <tbody>
                           {allBeneficiaries.map((name, index) => (
                             <tr
-                              className="bg-white rounded-t rounded-b border-b  dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                              className=" rounded-t rounded-b border-b  bg-gray-800 border-gray-700 hover:bg-gray-600"
                               key={index}
                             >
                               <td className="py-1 px-4 ">{name}</td>

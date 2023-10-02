@@ -127,7 +127,7 @@ const Home: React.FC = () => {
                   {filteredData.map((item, index) => (
                     <tr
                       key={index}
-                      className="cursor-pointer bg-white border-b rounded-xl dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                      className="cursor-pointer  border-b rounded-xl bg-gray-800 border-gray-700 hover:bg-gray-600"
                       onClick={() => redirectToDashboard(item.cleanBeneficiary)}
                     >
                       <td className="px-6 py-4">{item.cleanBeneficiary}</td>
@@ -160,7 +160,7 @@ const Home: React.FC = () => {
                 {filteredprojectData.map((item, index) => (
                   <tr
                     key={index}
-                    className="cursor-pointer bg-white border-b rounded-xl dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    className="cursor-pointer  border-b rounded-xl bg-gray-800 border-gray-700 hover:bg-gray-600"
                     onClick={() => redirectToProjDashboard(item.ID)}
                   >
                     <td className="px-6 py-4">{item.ID}</td>
