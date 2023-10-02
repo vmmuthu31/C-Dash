@@ -254,7 +254,6 @@ const Dashboard: React.FC = () => {
     width: 800,
     paper_bgcolor: "rgba(0,0,0,0)",
     plot_bgcolor: "rgba(0,0,0,0)",
-
     hovertemplate: "<b>%{customdata}</b><extra></extra>",
     yaxis: { zeroline: false, title: "Net Retirement Amount" },
   };

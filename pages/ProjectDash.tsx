@@ -114,15 +114,17 @@ const ProjectDash = () => {
             y: quantities?.map((q) => q.value),
             type: "bar",
             name: "Total Quantities",
+            hovertemplate: '%{y}<extra></extra>',
           };
-
+          
           const trace2 = {
             x: retirements?.map((r) => r.date),
             y: retirements?.map((r) => r.value),
             type: "bar",
             name: "Net Retirements",
+            hovertemplate: '%{y}<extra></extra>',
           };
-
+          
           const retirementNumbers = parseBeneficiaries(
             datum["Clean Beneficiaries with Retirement Numbers"]
           );
@@ -166,6 +168,8 @@ const ProjectDash = () => {
                         ticktext: xTickTexts,
                       },
                       yaxis: { title: "Values" },
+                      
+                      hoverlabel: "<b>%{x}</b><extra></extra>",
                     }}
                     style={{ width: "950px", height: "380px" }}
                   />
