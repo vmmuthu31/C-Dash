@@ -73,13 +73,17 @@ const Home: React.FC = () => {
       );
       setFilteredprojectData(
         projectdata.filter((item) =>
-          item.Name.toLowerCase().includes(searchTerm.toLowerCase())
+          item.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          String(item.ID).toLowerCase().includes(searchTerm.toLowerCase()) || // Convert ID to string here
+          item.Proponent.toLowerCase().includes(searchTerm.toLowerCase())
         )
       );
     } else {
       setFilteredData(data);
+      setFilteredprojectData(projectdata);
     }
   }, [searchTerm, data, projectdata]);
+  
 
   return (
     <>
@@ -89,27 +93,27 @@ const Home: React.FC = () => {
     <Navbar />
       <main className="pt-4">
         <div className="lg:px-20 px-4 mx-auto">
-          <div className="flex border rounded-lg border-black">
-            <button
-              className="text-xl border bg-green-500 border-black px-4 lg:px-20 font-bold"
-              onClick={() => setSelectedDataType("company")}
-            >
-              Company Level Data
-            </button>
-            <button
-              className="text-xl border bg-yellow-400 border-black px-4 lg:px-20 font-bold"
-              onClick={() => setSelectedDataType("project")}
-            >
-              Project Level Data
-            </button>
-            <input
-              type="text"
-              placeholder="Search by Company Name"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-4 bg-green-500 text-white border rounded custom-input"
-            />
-          </div>
+        <div className="flex border rounded-lg border-black">
+      <button
+        className={`text-xl border px-4 lg:px-20 font-bold ${selectedDataType === "company" ? "bg-red-500" : "bg-green-500"}`}
+        onClick={() => setSelectedDataType("company")}
+      >
+        Company Level Data
+      </button>
+      <button
+        className={`text-xl border px-4 lg:px-20 font-bold ${selectedDataType === "project" ? "bg-red-500" : "bg-green-500"}`}
+        onClick={() => setSelectedDataType("project")}
+      >
+        Project Level Data
+      </button>
+      <input
+        type="text"
+        placeholder="Search by Company Name"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="w-full px-4 bg-green-500 text-white border rounded custom-input"
+      />
+    </div>
           {selectedDataType === "company" ? (
             filteredData.length > 0 ? (
               <table className="w-full my-10 rounded-lg text-sm text-left text-gray-500">
