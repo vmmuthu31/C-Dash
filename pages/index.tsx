@@ -1,10 +1,19 @@
 "use client";
 import Link from "next/link";
 import Navbar from "./Navbar";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import {useSession} from "next-auth/react";
 
 const Home: React.FC = () => {
- 
-
+  const { data: session } = useSession();
+  const router = useRouter();
+  useEffect(()=>{
+    if (session){
+      router.push("/Home");
+    }
+  },[session])
+  console.log(session)
   return (
     <div className="min-h-full bg-white">
       <Navbar />
